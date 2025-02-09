@@ -1,5 +1,5 @@
 # Create a valentines/techie reccomendation system 💕
-
+Build a simple recommendation system from scratch! Learn how to analyze data, implement recommendation algorithms, and create personalized suggestions in this hands-on session.
 
 ## Features
 - ✅ Learn what are embeddings and tokens
