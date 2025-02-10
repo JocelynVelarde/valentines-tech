@@ -13,7 +13,7 @@ Build a simple recommendation system from scratch! Learn how to analyze data, im
 
 ## Materials
 - [Slides](https://docs.google.com/presentation/d/1CrdWxPd196njM_zDboSjtyT4x2CFPHVMhWFSxGS46aI/edit?usp=sharing)
-- [YouTube Recording of Live Session PT 1](pending) pending
+- [YouTube Recording of Live Session PT 1](https://www.youtube.com/watch?v=bYbfi0QZYms&t=3s)
 - [YouTube Recording of Live Session PT 2](pending) pending
 
 <img width="753" alt="Screenshot 2025-01-10 at 1 51 58 PM" src="https://github.com/user-attachments/assets/d367bfae-54a6-4169-a026-0207f8692677" />
