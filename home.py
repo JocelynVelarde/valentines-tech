@@ -69,10 +69,35 @@ def find_match(current_user_id, current_embedding):
 
     return similarities[0][1] if similarities else None
 
-
 if st.button("Submit"):
-    # recommendation function
-    st.success("Match has been found yei!")
+    if hacker_name and favorite_coffee and favorite_keycap and programming_language and text_editor and favorite_snack and favorite_browser and favorite_pizza_topping and hacker_description:
+        response = {
+            "hacker_name": hacker_name,
+            "favorite_coffee": favorite_coffee,
+            "favorite_keycap": favorite_keycap,
+            "programming_language": programming_language,
+            "text_editor": text_editor,
+            "favorite_snack": favorite_snack,
+            "favorite_browser": favorite_browser,
+            "favorite_pizza_topping": favorite_pizza_topping,
+            "hacker_description": hacker_description 
+        }
+
+        # Generate embeddings
+        responses_text = " ".join(response.values())
+        actual_embedding = get_embedding(responses_text)
+
+        # Add to mongodb
+        current_user_id = save_response(response, actual_embedding)
+
+        # Find match
+        match = find_match(current_user_id, actual_embedding)
+
+        if match:
+            top_match, top_response = match[0]
+            st.success(f"Match found! {match}")
+        else:
+            st.warning("You are the first person to be added to the system") 
 else:
     st.warning("Please fill all of the question blanks")
 
