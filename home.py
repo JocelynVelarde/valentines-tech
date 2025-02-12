@@ -1,5 +1,9 @@
 import streamlit as st
 
+user = st.secrets["USER"]
+password = st.secrets["PASSWORD"]
+uri_url = st.secrets["URI_URL"]
+
 st.title("Hacker spirit + valentines recommendation system")
 
 st.divider()
@@ -20,5 +24,4 @@ if st.button("Submit"):
     st.success("Match has been found yei!")
 else:
     st.warning("Please fill all of the question blanks")
-
 
