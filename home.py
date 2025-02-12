@@ -1,8 +1,20 @@
 import streamlit as st
+import pymongo
+import openai
 
 user = st.secrets["USER"]
 password = st.secrets["PASSWORD"]
 uri_url = st.secrets["URI_URL"]
+
+uri = f"mongodb+srv://{user}:{password}@{uri_url}/?retryWrites=true&w=majority&appName=Cluster0"
+
+# 1. Create mongo db connection
+client = pymongo.MongoClient(uri)
+db = client["valentine_tech"]
+collection = db["responses"]
+
+# 2. Auth with openai
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 st.title("Hacker spirit + valentines recommendation system")
 
