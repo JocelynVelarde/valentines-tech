@@ -1,6 +1,8 @@
 import streamlit as st
 import pymongo
 import openai
+import pickle
+from bson.binary import Binary
 
 user = st.secrets["USER"]
 password = st.secrets["PASSWORD"]
@@ -24,12 +26,31 @@ st.image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.free
 
 st.subheader("Fill the questions below to get your techie match")
 
+hacker_name = st.text_input("What is your name or discord username?")
 favorite_coffee = st.text_input("What is your favorite drink to order at a coffee shop?")
 favorite_keycap = st.text_input("What is your keycap for a mechanical keyboard?")
 programming_language = st.text_input("What is your favorite programming language?")
 text_editor = st.text_input("What is your favorite code editor?")
 favorite_snack = st.text_input("What is your favorite snack to munch while coding?")
 favorite_browser = st.text_input("What is your favorite browser?")
+favorite_pizza_topping = st.text_input("What is your favorite pizza topping? (also chocolate is valid)")
+hacker_description = st.text_area("Give us a short description about yourself, excluding your name")
+
+# 3. Generate embeddings from openai model
+def get_embedding(text):
+    response = client.embeddings.create(
+    input=text,
+    model="text-embedding-ada-002"
+    )
+    return response.data[0].embedding
+
+# 4. Save responses in mongodb
+def save_response(response, embedding):
+    result = collection.insert_one({
+        "responses": response,
+        "embedding": Binary(pickle.dumps(embedding))
+    })
+    return result.inserted_id
 
 if st.button("Submit"):
     # recommendation function
