@@ -39,7 +39,7 @@ hacker_description = st.text_area("Give us a short description about yourself, e
 
 # 3. Generate embeddings from openai model
 def get_embedding(text):
-    response = client.embeddings.create(
+    response = openai.embeddings.create(
     input=text,
     model="text-embedding-ada-002"
     )
